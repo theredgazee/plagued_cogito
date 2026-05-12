@@ -3,9 +3,10 @@
 :root {
   --bg: #ffffff;
   --text: #1a1a1a;
-  --silver1: rgba(200, 200, 205, 0.55);
-  --silver2: rgba(170, 170, 180, 0.45);
-  --silver3: rgba(220, 220, 225, 0.35);
+
+  --s1: rgba(200,200,205,0.55);
+  --s2: rgba(170,170,180,0.45);
+  --s3: rgba(220,220,225,0.35);
 }
 
 * {
@@ -23,42 +24,42 @@ body {
 
 /* ───────── BACKGROUND ───────── */
 
-.gradient-bg {
+.bg {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
 
-.gradient-bg span {
+.bg span {
   position: absolute;
   border-radius: 999px;
   filter: blur(90px);
   opacity: 0.65;
-  animation: float 20s infinite ease-in-out;
+  animation: float 22s infinite ease-in-out;
 }
 
-.gradient-bg span:nth-child(1) {
+.bg span:nth-child(1) {
   width: 420px;
   height: 420px;
-  background: var(--silver1);
+  background: var(--s1);
   top: -120px;
   left: -120px;
 }
 
-.gradient-bg span:nth-child(2) {
+.bg span:nth-child(2) {
   width: 380px;
   height: 380px;
-  background: var(--silver2);
+  background: var(--s2);
   bottom: -140px;
   right: -100px;
   animation-delay: -6s;
 }
 
-.gradient-bg span:nth-child(3) {
+.bg span:nth-child(3) {
   width: 320px;
   height: 320px;
-  background: var(--silver3);
+  background: var(--s3);
   top: 40%;
   left: 45%;
   animation-delay: -12s;
@@ -66,20 +67,20 @@ body {
 
 @keyframes float {
   0%   { transform: translate(0,0) scale(1); }
-  50%  { transform: translate(70px,-50px) scale(1.1); }
+  50%  { transform: translate(80px,-60px) scale(1.15); }
   100% { transform: translate(0,0) scale(1); }
 }
 
 /* ───────── LAYOUT ───────── */
 
-.wrap {
+.container {
   position: relative;
   z-index: 2;
 }
 
 .hero {
   text-align: center;
-  padding: 8rem 2rem;
+  padding: 7rem 2rem;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -88,26 +89,21 @@ body {
 
 .name {
   font-family: "Cormorant Garamond", serif;
-  font-size: 3.4rem;
+  font-size: 3.6rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
 
-/* ───────── LINES ───────── */
+/* ───────── DIVIDERS ───────── */
 
-.line {
+.divider {
   width: 140px;
   height: 1px;
-  margin: 1.4rem auto;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(150,150,160,0.7),
-    transparent
-  );
+  margin: 1.5rem auto;
+  background: linear-gradient(90deg, transparent, rgba(150,150,160,0.7), transparent);
 }
 
-.line.soft {
+.divider.soft {
   width: 90px;
   opacity: 0.5;
 }
@@ -125,15 +121,21 @@ body {
 .typebox {
   margin-top: 2.5rem;
   padding: 2rem;
-  min-height: 240px;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: #222;
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #222;
+  min-height: 260px;
 }
 
+#typewriter {
+  white-space: pre-wrap;
+}
+
+/* cursor */
 .cursor {
   animation: blink 1s infinite;
   color: #999;
@@ -141,8 +143,4 @@ body {
 
 @keyframes blink {
   50% { opacity: 0; }
-}
-
-#typewriter {
-  white-space: pre-wrap;
 }
