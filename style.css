@@ -181,3 +181,50 @@ nav a:hover::after {
   margin: 4rem 0;
   color: #aaa;
 }
+/* moving background FIX (your old one was too subtle/static) */
+.gradient-bg span {
+  animation: float 18s infinite ease-in-out, drift 12s infinite linear;
+}
+
+/* extra horizontal drift so it actually feels alive */
+@keyframes drift {
+  0% { transform: translateX(0px); }
+  50% { transform: translateX(60px); }
+  100% { transform: translateX(0px); }
+}
+
+/* name styling */
+.name {
+  font-size: 3.2rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.sub {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+/* typewriter box */
+.typebox {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #222;
+  min-height: 220px;
+}
+
+/* blinking cursor */
+.cursor {
+  display: inline-block;
+  animation: blink 1s infinite;
+  color: #999;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
