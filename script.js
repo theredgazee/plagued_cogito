@@ -16,14 +16,13 @@ let i = 0;
 let deleting = false;
 
 function loop() {
-  const current = text.slice(0, i);
-  el.innerText = current;
+  el.innerText = text.slice(0, i);
 
   if (!deleting) {
     i++;
     if (i > text.length) {
       deleting = true;
-      setTimeout(loop, 2000); // pause at full text
+      setTimeout(loop, 2000);
       return;
     }
   } else {
@@ -34,8 +33,7 @@ function loop() {
     }
   }
 
-  const speed = deleting ? 20 : 35;
-  setTimeout(loop, speed);
+  setTimeout(loop, deleting ? 18 : 28);
 }
 
 loop();
