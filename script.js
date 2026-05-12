@@ -1,6 +1,5 @@
-window.addEventListener("DOMContentLoaded", () => {
+const texts = [
 
-  const texts = [
 `Earth be my head, sky be my feet.
 
 The ladder is laid skyward, and the final kingdom's heart lies penetrated.
@@ -10,6 +9,18 @@ The ladder is laid skyward, and the final kingdom's heart lies penetrated.
 I am the key and the lock of the steadfast gate, the bell that once rang at the end rings the beginning.
 
 In the new millennial kingdom, shall the thirteen stand by my side.`,
+
+`I don’t really trust easy answers. They usually fall apart the second you stop looking at them.
+
+Most things I care about—people, ideas, even myself—don’t stay in one shape long enough to label properly. So I stopped trying to freeze them. I just… watch them move.
+
+I think people mistake that for detachment, but it’s not. It’s just refusing to lie to myself about how unstable everything actually is.
+
+Still, I keep building things. Systems, habits, understanding—like I can somehow make something stable out of something that isn’t.
+
+Maybe that’s the joke. Or maybe that’s the point.
+
+Either way, I’m still here doing it.`,
 
 `so many eyes in a world where people insist to remain blind.
 
@@ -26,50 +37,70 @@ eyes so blind yet they know it not.
 may these eyes of mine.. guide me to my answer.
 
 these eyes... Eyes beyond light....`
-  ];
 
-  const el = document.getElementById("typewriter");
+];
 
-  let i = 0;
-  let j = 0;
-  let deleting = false;
+const typewriter = document.getElementById("typewriter");
 
-  function delay(char) {
-    if (".!?".includes(char)) return 600;
-    if (",;:".includes(char)) return 300;
-    if (char === "\n") return 400;
-    return 25;
-  }
+let textIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-  function tick() {
-    const text = texts[i];
+function delay(character) {
 
-    if (!deleting) {
-      el.textContent = text.slice(0, j + 1);
-      const char = text[j];
-      j++;
+  if (character === ".") return 320;
+  if (character === ",") return 140;
+  if (character === "?") return 420;
+  if (character === "!") return 420;
+  if (character === "\n") return 300;
 
-      if (j >= text.length) {
-        deleting = true;
-        setTimeout(tick, 2000);
-        return;
-      }
+  return 22;
+}
 
-      setTimeout(tick, delay(char));
-    } else {
-      el.textContent = text.slice(0, j - 1);
-      j--;
+function animate() {
 
-      if (j <= 0) {
-        deleting = false;
-        i = (i + 1) % texts.length;
-        setTimeout(tick, 800);
-        return;
-      }
+  const current = texts[textIndex];
 
-      setTimeout(tick, 12);
+  if (!deleting) {
+
+    typewriter.textContent =
+      current.substring(0, charIndex);
+
+    charIndex++;
+
+    if (charIndex > current.length) {
+
+      deleting = true;
+
+      setTimeout(animate, 2600);
+      return;
     }
-  }
 
-  tick();
-});
+    const currentChar =
+      current.charAt(charIndex - 1);
+
+    setTimeout(animate, delay(currentChar));
+
+  } else {
+
+    typewriter.textContent =
+      current.substring(0, charIndex);
+
+    charIndex--;
+
+    if (charIndex < 0) {
+
+      deleting = false;
+
+      textIndex =
+        (textIndex + 1) % texts.length;
+
+      setTimeout(animate, 900);
+      return;
+    }
+
+    setTimeout(animate, 10);
+  }
+}
+
+animate();
