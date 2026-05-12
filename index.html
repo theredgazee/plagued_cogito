@@ -6,10 +6,8 @@
 
   <title>.𝘪𝘯𝘦 [ע]</title>
 
-  <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
@@ -17,37 +15,60 @@
 
 <body>
 
-  <!-- moving silver gradients -->
   <div class="gradient-bg">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    <span class="orb orb-a"></span>
+    <span class="orb orb-b"></span>
+    <span class="orb orb-c"></span>
+    <span class="ribbon"></span>
   </div>
 
-  <!-- subtle grain -->
-  <div class="noise"></div>
+  <div class="scales" aria-hidden="true"></div>
+
+  <div class="noise" aria-hidden="true"></div>
 
   <main class="container">
 
     <section class="hero">
 
-      <div class="top-line"></div>
+      <div class="top-line" aria-hidden="true"></div>
 
       <h1 class="name">.𝘪𝘯𝘦 [ע]</h1>
 
-      <div class="mid-line"></div>
+      <div class="snake-divider" aria-hidden="true">
+        <svg viewBox="0 0 240 28" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="stroke-silver" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(140,140,155,0)" />
+              <stop offset="35%" stop-color="rgba(130,130,148,0.55)" />
+              <stop offset="65%" stop-color="rgba(110,110,128,0.45)" />
+              <stop offset="100%" stop-color="rgba(140,140,155,0)" />
+            </linearGradient>
+          </defs>
+          <path
+            class="snake-path"
+            d="M 8 14 C 48 2, 72 2, 120 14 S 192 26, 232 14"
+            fill="none"
+            stroke="url(#stroke-silver)"
+            stroke-width="1.15"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
 
       <p class="subtitle">
         <em>eyes beyond light</em>
       </p>
 
-      <div class="bottom-line"></div>
+      <div class="bottom-line" aria-hidden="true"></div>
 
-      <!-- typewriter -->
       <div class="type-area">
-        <p id="typewriter"></p>
-        <span class="cursor">|</span>
+        <div
+          id="typewriter"
+          class="typewriter"
+          role="status"
+          aria-live="polite"
+          aria-relevant="additions text"
+        ></div>
       </div>
 
     </section>
