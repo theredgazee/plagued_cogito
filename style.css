@@ -21,7 +21,8 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔥 BACKGROUND LAYER */
+/* ───────── BACKGROUND ───────── */
+
 .gradient-bg {
   position: fixed;
   inset: 0;
@@ -29,20 +30,19 @@ body {
   pointer-events: none;
 }
 
-/* floating blobs */
 .gradient-bg span {
   position: absolute;
   border-radius: 999px;
   filter: blur(90px);
-  opacity: 0.7;
-  animation: float 18s infinite ease-in-out;
+  opacity: 0.65;
+  animation: float 20s infinite ease-in-out;
 }
 
 .gradient-bg span:nth-child(1) {
   width: 420px;
   height: 420px;
   background: var(--silver1);
-  top: -100px;
+  top: -120px;
   left: -120px;
 }
 
@@ -50,177 +50,91 @@ body {
   width: 380px;
   height: 380px;
   background: var(--silver2);
-  bottom: -120px;
-  right: -80px;
+  bottom: -140px;
+  right: -100px;
   animation-delay: -6s;
 }
 
 .gradient-bg span:nth-child(3) {
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   background: var(--silver3);
   top: 40%;
-  left: 40%;
+  left: 45%;
   animation-delay: -12s;
 }
 
 @keyframes float {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(80px, -60px) scale(1.15);
-  }
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(70px,-50px) scale(1.1); }
+  100% { transform: translate(0,0) scale(1); }
 }
 
-/* CONTENT MUST BE ABOVE BACKGROUND */
-header, main {
+/* ───────── LAYOUT ───────── */
+
+.wrap {
   position: relative;
   z-index: 2;
 }
 
-/* NAV */
-header {
-  padding: 2rem;
-}
-
-nav {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  letter-spacing: 0.15em;
-  font-size: 0.8rem;
-  position: relative;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 1px;
-  background: #999;
-  transition: 0.3s;
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-/* HERO */
 .hero {
   text-align: center;
-  padding: 6rem 2rem 3rem;
+  padding: 8rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.hero h1 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-}
+/* ───────── NAME ───────── */
 
-.hero p {
-  margin-top: 1rem;
-  color: #666;
-}
-
-/* BUTTONS */
-.btn-group {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 0.8rem 2rem;
-  border-radius: 999px;
-  text-decoration: none;
-  color: #111;
-  background: linear-gradient(135deg, #f5f5f5, #dcdcdc);
-  box-shadow:
-    0 6px 20px rgba(0,0,0,0.08),
-    inset 0 1px 1px rgba(255,255,255,0.9);
-  transition: 0.3s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-/* SECTIONS */
-.text-block {
-  max-width: 600px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-
-.text-block h3 {
-  font-family: "Cormorant Garamond", serif;
-  margin-bottom: 0.5rem;
-}
-
-.text-block p {
-  color: #555;
-  line-height: 1.8;
-}
-
-/* SEPARATORS */
-.separator {
-  text-align: center;
-  margin: 4rem 0;
-  color: #aaa;
-}
-/* moving background FIX (your old one was too subtle/static) */
-.gradient-bg span {
-  animation: float 18s infinite ease-in-out, drift 12s infinite linear;
-}
-
-/* extra horizontal drift so it actually feels alive */
-@keyframes drift {
-  0% { transform: translateX(0px); }
-  50% { transform: translateX(60px); }
-  100% { transform: translateX(0px); }
-}
-
-/* name styling */
 .name {
-  font-size: 3.2rem;
-  font-weight: 500;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3.4rem;
+  font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
 }
+
+/* ───────── LINES ───────── */
+
+.line {
+  width: 140px;
+  height: 1px;
+  margin: 1.4rem auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(150,150,160,0.7),
+    transparent
+  );
+}
+
+.line.soft {
+  width: 90px;
+  opacity: 0.5;
+}
+
+/* ───────── SUBTITLE ───────── */
 
 .sub {
-  color: #777;
   font-size: 0.9rem;
-  margin-bottom: 2rem;
+  color: #777;
+  letter-spacing: 0.15em;
 }
 
-/* typewriter box */
+/* ───────── TYPEWRITER ───────── */
+
 .typebox {
-  max-width: 700px;
-  margin: 0 auto;
+  margin-top: 2.5rem;
   padding: 2rem;
+  min-height: 240px;
   font-size: 1rem;
   line-height: 1.8;
   color: #222;
-  min-height: 220px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* blinking cursor */
 .cursor {
-  display: inline-block;
   animation: blink 1s infinite;
   color: #999;
 }
