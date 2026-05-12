@@ -142,3 +142,7 @@ body {
 @keyframes blink {
   50% { opacity: 0; }
 }
+
+#typewriter {
+  white-space: pre-wrap;
+}
