@@ -1,4 +1,6 @@
-const texts = [
+window.addEventListener("DOMContentLoaded", () => {
+
+  const texts = [
 `Earth be my head, sky be my feet.
 
 The ladder is laid skyward, and the final kingdom's heart lies penetrated.
@@ -24,53 +26,50 @@ eyes so blind yet they know it not.
 may these eyes of mine..guide me to my answer.
 
 these eyes... Eyes beyond light....`
-];
+  ];
 
-const el = document.getElementById("typewriter");
+  const el = document.getElementById("typewriter");
 
-let textIndex = 0;
-let charIndex = 0;
-let deleting = false;
+  let textIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
 
-function getDelay(char) {
-  // slower on punctuation = more “thinking” pauses
-  if (char === "." || char === "!" || char === "?") return 650;
-  if (char === "," || char === ";" || char === ":") return 350;
-  if (char === "\n") return 500;
-  return 25;
-}
-
-function loop() {
-  const currentText = texts[textIndex];
-
-  if (!deleting) {
-    // typing forward
-    el.textContent = currentText.slice(0, charIndex + 1);
-    charIndex++;
-
-    if (charIndex >= currentText.length) {
-      deleting = true;
-      setTimeout(loop, 2000); // pause at end of block
-      return;
-    }
-
-    const char = currentText[charIndex - 1];
-    setTimeout(loop, getDelay(char));
-  } else {
-    // deleting backwards
-    el.textContent = currentText.slice(0, charIndex - 1);
-    charIndex--;
-
-    if (charIndex <= 0) {
-      deleting = false;
-      textIndex = (textIndex + 1) % texts.length;
-      setTimeout(loop, 800); // pause before next text
-      return;
-    }
-
-    setTimeout(loop, 15);
+  function getDelay(char) {
+    if (char === "." || char === "!" || char === "?") return 650;
+    if (char === "," || char === ";" || char === ":") return 350;
+    if (char === "\n") return 500;
+    return 25;
   }
-}
 
-// start
-loop();
+  function loop() {
+    const currentText = texts[textIndex];
+
+    if (!deleting) {
+      el.textContent = currentText.slice(0, charIndex + 1);
+      const char = currentText[charIndex];
+      charIndex++;
+
+      if (charIndex >= currentText.length) {
+        deleting = true;
+        setTimeout(loop, 2000);
+        return;
+      }
+
+      setTimeout(loop, getDelay(char));
+    } else {
+      el.textContent = currentText.slice(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex <= 0) {
+        deleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        setTimeout(loop, 800);
+        return;
+      }
+
+      setTimeout(loop, 15);
+    }
+  }
+
+  loop();
+});
