@@ -1,39 +1,76 @@
-const text = `I don’t really trust easy answers. They usually fall apart the second you stop looking at them.
+const texts = [
+`Earth be my head, sky be my feet.
 
-Most things I care about—people, ideas, even myself—don’t stay in one shape long enough to label properly. So I stopped trying to freeze them. I just… watch them move.
+The ladder is laid skyward, and the final kingdom's heart lies penetrated.
 
-I think people mistake that for detachment, but it’s not. It’s just refusing to lie to myself about how unstable everything actually is.
+32 paths are revealed, the roses and falls of breaths are exiled you and returned at the hour of inequivalence.
 
-Still, I keep building things. Systems, habits, understanding—like I can somehow make something stable out of something that isn’t.
+I am the key and the lock of the steadfast gate, the bell that once rang at the end rings the beginning.
 
-Maybe that’s the joke. Or maybe that’s the point.
+In the new millennial kingdom, shall the thirteen stand by my side.`,
 
-Either way, I’m still here doing it.`;
+`so many eyes in a world where people insist to remain blind.
+
+Ah.. the cursed inherited will of only following what meets the eye.. witnesses to nothing but thier own misery.
+
+A flow like an age old river fed by bloodshed and sorrow. Humanity's biggest plague.. he who thinks but not acts breeds that sickness.. the sickness of the mind.
+
+yet what blame is there, when all seen through the veil of light becomes unreachable dreams..fragmented, shattered hopes of those before us?
+
+Is it the fool who only meets his own pain that the sky laughs at.. or is it the lost one who walks aimlessly looking for a purpose in a world where darkness veils truth and balance..?
+
+eyes so blind yet they know it not.
+
+may these eyes of mine..guide me to my answer.
+
+these eyes... Eyes beyond light....`
+];
 
 const el = document.getElementById("typewriter");
 
-let i = 0;
+let textIndex = 0;
+let charIndex = 0;
 let deleting = false;
 
-function loop() {
-  el.innerText = text.slice(0, i);
-
-  if (!deleting) {
-    i++;
-    if (i > text.length) {
-      deleting = true;
-      setTimeout(loop, 2000);
-      return;
-    }
-  } else {
-    i--;
-    if (i < 0) {
-      deleting = false;
-      i = 0;
-    }
-  }
-
-  setTimeout(loop, deleting ? 18 : 28);
+function getDelay(char) {
+  // slower on punctuation = more “thinking” pauses
+  if (char === "." || char === "!" || char === "?") return 650;
+  if (char === "," || char === ";" || char === ":") return 350;
+  if (char === "\n") return 500;
+  return 25;
 }
 
+function loop() {
+  const currentText = texts[textIndex];
+
+  if (!deleting) {
+    // typing forward
+    el.textContent = currentText.slice(0, charIndex + 1);
+    charIndex++;
+
+    if (charIndex >= currentText.length) {
+      deleting = true;
+      setTimeout(loop, 2000); // pause at end of block
+      return;
+    }
+
+    const char = currentText[charIndex - 1];
+    setTimeout(loop, getDelay(char));
+  } else {
+    // deleting backwards
+    el.textContent = currentText.slice(0, charIndex - 1);
+    charIndex--;
+
+    if (charIndex <= 0) {
+      deleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      setTimeout(loop, 800); // pause before next text
+      return;
+    }
+
+    setTimeout(loop, 15);
+  }
+}
+
+// start
 loop();
