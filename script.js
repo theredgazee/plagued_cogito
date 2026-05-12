@@ -13,63 +13,63 @@ In the new millennial kingdom, shall the thirteen stand by my side.`,
 
 `so many eyes in a world where people insist to remain blind.
 
-Ah.. the cursed inherited will of only following what meets the eye.. witnesses to nothing but thier own misery.
+Ah.. the cursed inherited will of only following what meets the eye.. witnesses to nothing but their own misery.
 
 A flow like an age old river fed by bloodshed and sorrow. Humanity's biggest plague.. he who thinks but not acts breeds that sickness.. the sickness of the mind.
 
-yet what blame is there, when all seen through the veil of light becomes unreachable dreams..fragmented, shattered hopes of those before us?
+yet what blame is there, when all seen through the veil of light becomes unreachable dreams.. fragmented, shattered hopes of those before us?
 
 Is it the fool who only meets his own pain that the sky laughs at.. or is it the lost one who walks aimlessly looking for a purpose in a world where darkness veils truth and balance..?
 
 eyes so blind yet they know it not.
 
-may these eyes of mine..guide me to my answer.
+may these eyes of mine.. guide me to my answer.
 
 these eyes... Eyes beyond light....`
   ];
 
   const el = document.getElementById("typewriter");
 
-  let textIndex = 0;
-  let charIndex = 0;
+  let i = 0;
+  let j = 0;
   let deleting = false;
 
-  function getDelay(char) {
-    if (char === "." || char === "!" || char === "?") return 650;
-    if (char === "," || char === ";" || char === ":") return 350;
-    if (char === "\n") return 500;
+  function delay(char) {
+    if (".!?".includes(char)) return 600;
+    if (",;:".includes(char)) return 300;
+    if (char === "\n") return 400;
     return 25;
   }
 
-  function loop() {
-    const currentText = texts[textIndex];
+  function tick() {
+    const text = texts[i];
 
     if (!deleting) {
-      el.textContent = currentText.slice(0, charIndex + 1);
-      const char = currentText[charIndex];
-      charIndex++;
+      el.textContent = text.slice(0, j + 1);
+      const char = text[j];
+      j++;
 
-      if (charIndex >= currentText.length) {
+      if (j >= text.length) {
         deleting = true;
-        setTimeout(loop, 2000);
+        setTimeout(tick, 2000);
         return;
       }
 
-      setTimeout(loop, getDelay(char));
+      setTimeout(tick, delay(char));
     } else {
-      el.textContent = currentText.slice(0, charIndex - 1);
-      charIndex--;
+      el.textContent = text.slice(0, j - 1);
+      j--;
 
-      if (charIndex <= 0) {
+      if (j <= 0) {
         deleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        setTimeout(loop, 800);
+        i = (i + 1) % texts.length;
+        setTimeout(tick, 800);
         return;
       }
 
-      setTimeout(loop, 15);
+      setTimeout(tick, 12);
     }
   }
 
-  loop();
+  tick();
 });
