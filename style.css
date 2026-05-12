@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --silver-light: #d4d4d8;
+  --silver-mid: #a1a1aa;
+  --silver-dark: #71717a;
+  --bg: #ffffff;
+  --text: #1e1e1e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Animated silvery gradients */
+.gradient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.gradient-bg span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 20s infinite ease-in-out;
+}
+
+.gradient-bg span:nth-child(1) {
+  width: 400px;
+  height: 400px;
+  background: var(--silver-light);
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.gradient-bg span:nth-child(2) {
+  width: 300px;
+  height: 300px;
+  background: var(--silver-mid);
+  top: 50%;
+  right: -5%;
+  animation-delay: -7s;
+}
+
+.gradient-bg span:nth-child(3) {
+  width: 350px;
+  height: 350px;
+  background: var(--silver-dark);
+  bottom: -10%;
+  left: 30%;
+  animation-delay: -14s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(50px, -30px) scale(1.1); }
+  50% { transform: translate(-20px, 40px) scale(0.9); }
+  75% { transform: translate(30px, 20px) scale(1.05); }
+}
+
+/* Content layout */
+header {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--silver-dark);
+  transition: width 0.4s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 6rem 2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--silver-dark);
+  margin-bottom: 3rem;
+}
+
+/* Elegant separator line */
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 4rem 0;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, var(--silver-mid), transparent);
+}
+
+.separator span {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--silver-dark);
+}
+
+/* Text blocks */
+.text-block {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.text-block h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-block p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #666;
+}
+
+/* Glossy round buttons */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e4e4e7, #a1a1aa, #d4d4d8);
+  color: #1e1e1e;
+  box-shadow:
+    0 2px 10px rgba(161, 161, 170, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(161, 161, 170, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* Decorative vertical line */
+.vline {
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, var(--silver-mid), transparent);
+  margin: 2rem auto;
+}
