@@ -1,36 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>.𝘪𝘯𝘦 [ע]</title>
 
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <!-- background -->
+  <!-- moving silver gradients -->
   <div class="gradient-bg">
+    <span></span>
     <span></span>
     <span></span>
     <span></span>
   </div>
 
-  <main class="wrap">
+  <!-- subtle grain -->
+  <div class="noise"></div>
+
+  <main class="container">
 
     <section class="hero">
 
+      <div class="top-line"></div>
+
       <h1 class="name">.𝘪𝘯𝘦 [ע]</h1>
 
-      <div class="line"></div>
+      <div class="mid-line"></div>
 
-      <p class="sub"><em>eyes beyond light</em></p>
+      <p class="subtitle">
+        <em>eyes beyond light</em>
+      </p>
 
-      <div class="line soft"></div>
+      <div class="bottom-line"></div>
 
-      <div class="typebox">
+      <!-- typewriter -->
+      <div class="type-area">
         <p id="typewriter"></p>
         <span class="cursor">|</span>
       </div>
@@ -40,6 +55,5 @@
   </main>
 
   <script src="script.js"></script>
-
 </body>
 </html>
